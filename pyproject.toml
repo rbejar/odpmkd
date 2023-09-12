@@ -1,0 +1,17 @@
+[build-system]
+requires = [
+    "setuptools"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "odpmkd"
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+# TODO: Find out how to keep a proper dev versioning with autoincrements
+version = {attr = "odpmkd.VERSION"}
+
+[project.scripts]
+odpmkd = "odpmkd:main"
+odptools = "odpmkd.odptools:main"
