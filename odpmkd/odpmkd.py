@@ -279,7 +279,7 @@ class OdpParser:
         self.slides.append(slide_0)
 
 
-    def open(self,fname,mediaDir='media',markdown = False,mediaExtraction = False):
+    def open(self, fname, mediaDir='media', markdown = False, mediaExtraction = False):
         
         self.mediaDirectory = mediaDir
         self.basename = os.path.splitext(os.path.basename(fname))[0]
@@ -292,19 +292,19 @@ class OdpParser:
         with zipfile.ZipFile(fname) as odp:
             info = odp.infolist()
             for i in info:
-                if (i.filename == 'content.xml'):
+                if i.filename == 'content.xml':
                     with odp.open('content.xml') as index:
                         doc = dom.parseString(index.read())
                         self.handleDocument(doc)
 
         
             # output markdown
-            if markdown == True:
+            if markdown:
                 for slide in self.slides:
                         print(slide)
 
             # generate files
-            if mediaExtraction == True:           
+            if mediaExtraction:
                 for slide in self.slides:
                     for m,v in slide.media:
                         try:
@@ -313,7 +313,10 @@ class OdpParser:
                                 os.makedirs(self.mediaDirectory)
                             os.rename(os.path.join('', m), v)
                         except KeyError:
-                            print('error finding media file ',m)
+                            print('error finding media file ', m)
+                # Not very robust, but this is the name of the images directory inside odp files
+                # and the current media extraction process creates and keeps it in the current directory
+                os.rmdir('Pictures')
 
 
 def main():
