@@ -40,7 +40,7 @@ class Slide:
         self.media = []
         self.titleLevel = 2 # by default 2; for the first one this will be 1
 
-    def generateMarkdown(self,blockToHTML=True):
+    def generateMarkdown(self, blockToHTML=True):
         # fix identation
         self.text = textwrap.dedent(self.text)
         out = ('#' * self.titleLevel) + ' {0}\n\n{1}\n'.format(self.title,self.text)
@@ -135,9 +135,9 @@ class OdpParser:
                 name, ext = os.path.splitext(v)
                 ext = ext.lower()
                 # now we create a new slug name for conversion
-                slug = self.slugify(self.currentSlide.title)
-                if len(slug) < 1:
-                    slug = 'p' + str(len(self.slides))
+                # It is safer to use the number of the slide (len(self.slides)) than its title, as
+                # several slides migh have the same title.
+                slug = 'p' + str(len(self.slides))
                 # To make it safer (but not completely safe) to have media from different presentations in the same
                 # folder without name collisions, we add the original presentation file basename
                 slug = self.basename + '-' + slug
