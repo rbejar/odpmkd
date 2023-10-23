@@ -24,19 +24,19 @@ Take an odp file, and produce a markdown file of its contents including links to
 ## Notes
 The resulting markdown will be better if the input odp file slides:
 
-- Have a title, and some text structured in bullet points in the text area. This is the basic slide layout.
+- Have a title, and some text structured in bullet points in the outline. This is the basic slide layout.
 - Have a title and a single image.
 - Emphasized words (bolds, underlines, italics) are processed and the emphasis is kept. 
     - However, LibreOffice may allow you to do some very weird things with this, that look good on screen but are not so good when you are parsing the slides. So this does not work fine some times.
 
-Anything else might be processed, but the results will be worse:
+Anything else might be processed, but the results will vary:
 
 - If the slide has several images, they will be kept, but their position and size on the original slide are lost, so the result will not be very good.
-- Anything drawn using LibreOffice tools will be lost.
+- Anything drawn using LibreOffice drawing tools is lost.
 - Slides with just some text on them (often large text in the middle of the slide) will be processed, but that text will be the in same size as any other paragraph.
 - Tables are lost.
-- Text boxes are lost.
-- Hyperlinks are lost.
+- Text boxes are kept. However they are treated as verbatim text (using triple quotes in markdown). This is OK for code, but it might
+  not be OK for other uses. Besides this, emphasis and hyperlinks inside text boxes are lost.
 
 The resulting markdown file has this structure:
  
@@ -44,7 +44,7 @@ The resulting markdown file has this structure:
 - Level 2 titles with the title of the slides.
 - Bullet points with the bullet points in the slides. These are nested following the nesting in the slides.
 
-This structure is OK-ish for a presentation, but it is not so good if you look at the whole markdown as a document.
+This structure is OK-ish for a presentation, but it is not so good if you want to look at the whole markdown as a document.
 
 To improve the results, besides adapting your slides to the previous comments, you might try to transform
 some slides where you have several visual elements properly arranged in the slide, or perhaps some tables, into 
@@ -53,16 +53,13 @@ slide in your  presentation, in case you want to make changes in the future, and
 single image visible.
 
 ## TODO
-These are important (to me):
-- [ ] Text boxes have to be processed. This is especially important for slides with code snippets.
-- [X] Hyperlinks have to be processed.
-
-These are not so important:
-- [ ] Slides with "big text" could be processed better (perhaps by using a bigger font, or using the text as the title).
-- [ ] Some redundancy might be eliminated in the resulting markdown file with a smarter parsing.
-- [ ] Tables could be processed (but this might prove too much work for a very occasional use).
-- [ ] Hyperlinks which happen to be emphasized (bold etc.) should be processed too.
-- [ ] ...
+- Slides with "a single big text" could be processed better (perhaps by using a bigger font, or using the text as the title).
+- Some redundancy might be eliminated in the resulting markdown file with a smarter parsing.
+- Tables could be processed (but this might prove too much work for very little use).
+- Hyperlinks which happen to be emphasized (bold etc.) should be processed too.
+- Text boxes are currently exported as "verbatim" text (using triple quotes in markdown). This is complicated
+  and some text layouts and symbols (e.g. tabs) might not be properly kept. Besides this, emphasis in text boxes
+  is ignored, as well as hyperlinks.
 
 
 ## Copyright and License

@@ -180,15 +180,21 @@ class OdpParser:
             if node.childNodes[0].nodeName == '#text':
                 t = self.getTextFromNode(node.childNodes[0])
             elif node.childNodes[0].nodeName == 'text:span':
-                if len(node.childNodes[0].childNodes) > 0:
-                    t = self.getTextFromNode(node.childNodes[0].childNodes[0])
+                t = ""
+                for n in node.childNodes[0].childNodes:
+                    _t = self.getTextFromNode(n)
+                    if _t is not None:
+                        t += _t
             else:
                 self.handleVerbatimTextNode(node.childNodes[0])
         else:
             for n in node.childNodes:
                 if n.nodeName == 'text:span':
-                    if len(n.childNodes) > 0:
-                        t = self.getTextFromNode(n.childNodes[0])
+                    t = ""
+                    for nn in n.childNodes:
+                        _t = self.getTextFromNode(nn)
+                        if _t is not None:
+                            t += _t
         if t is not None:
             self.currentSlide.text += t
 
@@ -208,12 +214,12 @@ class OdpParser:
         _handleListNodeRec(node, -1)
 
     def handleTextBox(self, node):
-        self.currentSlide.text += "```\n"
+        self.currentSlide.text += "\n```\n"
         for n in node.childNodes:
             self.handleVerbatimTextNode(n)
             if n != node.childNodes[-1]:
                 self.currentSlide.text += "\n"
-        self.currentSlide.text += "\n```"
+        self.currentSlide.text += "\n```\n"
 
     def handleTitle(self, node):
         def _handleTitleRec(node):
