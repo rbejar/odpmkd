@@ -33,7 +33,7 @@ Anything else might be processed, but the results will vary:
 
 - If the slide has several images, they will be kept, but their position and size on the original slide are lost, so the result will not be very good.
 - Anything drawn using LibreOffice drawing tools is lost.
-- Slides with just some text on them (often large text in the middle of the slide) will be processed, but that text will be the in same size as any other paragraph.
+- Slides with just some text on them (often large text in the middle of the slide) will be processed, but that text will be the in same size as any other paragraph if its in an outline, and as a verbatim text (triple quoted) if it is a textbox.
 - Tables are lost.
 - Text boxes are kept. However they are treated as verbatim text (using triple quotes in markdown). This is OK for code, but it might
   not be OK for other uses. Besides this, emphasis and hyperlinks inside text boxes are lost.
