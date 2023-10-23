@@ -34,6 +34,7 @@ Anything else might be processed, but the results will be worse:
 - If the slide has several images, they will be kept, but their position and size on the original slide are lost, so the result will not be very good.
 - Anything drawn using LibreOffice tools will be lost.
 - Slides with just some text on them (often large text in the middle of the slide) will be processed, but that text will be the in same size as any other paragraph.
+- Tables are lost.
 
 The resulting markdown file has this structure:
  
@@ -44,10 +45,10 @@ The resulting markdown file has this structure:
 This structure is OK-ish for a presentation, but it is not so good if you look at the whole markdown as a document.
 
 To improve the results, besides adapting your slides to the previous comments, you might try to transform
-some slides where you have several visual elements properly arranged in the slide, into a single image and
-put that in a new slide that will processed better by odpmkd. You can then hide the original slide in your
-presentation, in case you want to make changes in the future, and keep the slide with the single image 
-visible. 
+some slides where you have several visual elements properly arranged in the slide, or perhaps some tables, into 
+a single image and put that in a new slide that will processed better by odpmkd. You can then hide the original 
+slide in your  presentation, in case you want to make changes in the future, and keep the slide with the 
+single image visible. 
 
 
 ## Copyright and License
