@@ -36,6 +36,7 @@ Anything else might be processed, but the results will be worse:
 - Slides with just some text on them (often large text in the middle of the slide) will be processed, but that text will be the in same size as any other paragraph.
 - Tables are lost.
 - Text boxes are lost.
+- Hyperlinks are lost.
 
 The resulting markdown file has this structure:
  
@@ -54,6 +55,7 @@ single image visible.
 ## TODO
 This is important (to me):
 - [ ] Text boxes have to be processed. This is especially important for slides with code snippets.
+- [ ] Hyperlinks have to be processed.
 
 These are not:
 - [ ] Slides with "big text" could be processed better (perhaps by using a bigger font, or using the text as the title).
