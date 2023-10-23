@@ -61,7 +61,7 @@ These are not so important:
 - [ ] Slides with "big text" could be processed better (perhaps by using a bigger font, or using the text as the title).
 - [ ] Some redundancy might be eliminated in the resulting markdown file with a smarter parsing.
 - [ ] Tables could be processed (but this might prove too much work for a very occasional use).
-- [ ] Hyperlinks wich happen to be emphasized (bold etc.) should be processed too.
+- [ ] Hyperlinks which happen to be emphasized (bold etc.) should be processed too.
 - [ ] ...
 
 

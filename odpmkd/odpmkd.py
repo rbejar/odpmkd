@@ -136,7 +136,7 @@ class OdpParser:
                 ext = ext.lower()
                 # now we create a new slug name for conversion
                 # It is safer to use the number of the slide (len(self.slides)) than its title, as
-                # several slides migh have the same title.
+                # several slides might have the same title.
                 slug = 'p' + str(len(self.slides))
                 # To make it safer (but not completely safe) to have media from different presentations in the same
                 # folder without name collisions, we add the original presentation file basename
@@ -190,8 +190,10 @@ class OdpParser:
         _handleListNodeRec(node, -1)
 
     def handleTextBox(self, node):
+        self.currentSlide.text += "```\n"
         for n in node.childNodes:
             self.handleTextNode(n)
+        self.currentSlide.text += "\n```"
 
     def handleTitle(self, node):
         def _handleTitleRec(node):
