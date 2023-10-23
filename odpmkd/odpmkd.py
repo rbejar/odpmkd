@@ -174,6 +174,24 @@ class OdpParser:
                     self.currentSlide.text += ' '
                 self.currentSlide.text += t
 
+    def handleVerbatimTextNode(self, node):
+        t = None
+        if len(node.childNodes) == 1:
+            if node.childNodes[0].nodeName == '#text':
+                t = self.getTextFromNode(node.childNodes[0])
+            elif node.childNodes[0].nodeName == 'text:span':
+                if len(node.childNodes[0].childNodes) > 0:
+                    t = self.getTextFromNode(node.childNodes[0].childNodes[0])
+            else:
+                self.handleVerbatimTextNode(node.childNodes[0])
+        else:
+            for n in node.childNodes:
+                if n.nodeName == 'text:span':
+                    if len(n.childNodes) > 0:
+                        t = self.getTextFromNode(n.childNodes[0])
+        if t is not None:
+            self.currentSlide.text += t
+
     def handleListNode(self, node):
         def _handleListNodeRec(node, depth):
             for n in node.childNodes:
@@ -192,7 +210,9 @@ class OdpParser:
     def handleTextBox(self, node):
         self.currentSlide.text += "```\n"
         for n in node.childNodes:
-            self.handleTextNode(n)
+            self.handleVerbatimTextNode(n)
+            if n != node.childNodes[-1]:
+                self.currentSlide.text += "\n"
         self.currentSlide.text += "\n```"
 
     def handleTitle(self, node):
