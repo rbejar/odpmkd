@@ -53,14 +53,15 @@ slide in your  presentation, in case you want to make changes in the future, and
 single image visible.
 
 ## TODO
-This is important (to me):
+These are important (to me):
 - [ ] Text boxes have to be processed. This is especially important for slides with code snippets.
-- [ ] Hyperlinks have to be processed.
+- [X] Hyperlinks have to be processed.
 
-These are not:
+These are not so important:
 - [ ] Slides with "big text" could be processed better (perhaps by using a bigger font, or using the text as the title).
 - [ ] Some redundancy might be eliminated in the resulting markdown file with a smarter parsing.
 - [ ] Tables could be processed (but this might prove too much work for a very occasional use).
+- [ ] Hyperlinks wich happen to be emphasized (bold etc.) should be processed too.
 - [ ] ...
 
 

@@ -152,14 +152,20 @@ class OdpParser:
             if n.nodeName == 'text:span':
                 if len(n.childNodes) > 0:
                     t = self.getTextFromNode(n.childNodes[0])
-                    if has_attribute_with_value(n, 'text:style-name', 'T1'):
-                        t = '*' + t + '*'
-                    elif has_attribute_with_value(n, 'text:style-name', 'T2'):
-                        t = '**' + t + '**'
-                    elif has_attribute_with_value(n, 'text:style-name', 'T3'):
-                        t = '<u>' + t + '</u>'
-                    else:   # ignore other styles
-                        pass
+                    if t is not None:
+                        if has_attribute_with_value(n, 'text:style-name', 'T1'):
+                            t = '*' + t + '*'
+                        elif has_attribute_with_value(n, 'text:style-name', 'T2'):
+                            t = '**' + t + '**'
+                        elif has_attribute_with_value(n, 'text:style-name', 'T3'):
+                            t = '<u>' + t + '</u>'
+                        else:   # ignore other styles
+                            pass
+            elif n.nodeName == 'text:a':  # hyperlinks
+                if len(n.childNodes) > 0:
+                    t = self.getTextFromNode(n.childNodes[0])
+                    if t is not None:
+                        t = '[' + t + '](' + n.attributes['xlink:href'].value + ')'
             else:
                 t = self.getTextFromNode(n)
 
@@ -193,16 +199,22 @@ class OdpParser:
             if node.nodeName == 'text:span':
                 if len(node.childNodes) > 0:
                     t = self.getTextFromNode(node.childNodes[0])
-                    if has_attribute_with_value(node, 'text:style-name', 'T1'):
-                        t = '*' + t + '*'
-                    elif has_attribute_with_value(node, 'text:style-name', 'T2'):
-                        t = '**' + t + '**'
-                    elif has_attribute_with_value(node, 'text:style-name', 'T3'):
-                        t = '<u>' + t + '</u>'
-                    else:  # ignore other styles
-                        pass
                     if t is not None:
+                        if has_attribute_with_value(node, 'text:style-name', 'T1'):
+                            t = '*' + t + '*'
+                        elif has_attribute_with_value(node, 'text:style-name', 'T2'):
+                            t = '**' + t + '**'
+                        elif has_attribute_with_value(node, 'text:style-name', 'T3'):
+                            t = '<u>' + t + '</u>'
+                        else:  # ignore other styles
+                            pass
                         self.currentSlide.title += t
+            elif node.nodeName == 'text:a':  # hyperlinks
+                if len(node.childNodes) > 0:
+                    t = self.getTextFromNode(node.childNodes[0])
+                    if t is not None:
+                        t = '[' + t + '](' + node.attributes['xlink:href'].value + ')'
+                    self.currentSlide.title += t
             else:
                 t = self.getTextFromNode(node)
                 if t is None:
