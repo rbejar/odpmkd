@@ -316,7 +316,8 @@ class OdpParser:
                             print('error finding media file ', m)
                 # Not very robust, but this is the name of the images directory inside odp files
                 # and the current media extraction process creates and keeps it in the current directory
-                os.rmdir('Pictures')
+                if os.path.exists('Pictures'):
+                    os.rmdir('Pictures')
 
 
 def main():
