@@ -35,6 +35,7 @@ Anything else might be processed, but the results will be worse:
 - Anything drawn using LibreOffice tools will be lost.
 - Slides with just some text on them (often large text in the middle of the slide) will be processed, but that text will be the in same size as any other paragraph.
 - Tables are lost.
+- Text boxes are lost.
 
 The resulting markdown file has this structure:
  
@@ -48,7 +49,17 @@ To improve the results, besides adapting your slides to the previous comments, y
 some slides where you have several visual elements properly arranged in the slide, or perhaps some tables, into 
 a single image and put that in a new slide that will processed better by odpmkd. You can then hide the original 
 slide in your  presentation, in case you want to make changes in the future, and keep the slide with the 
-single image visible. 
+single image visible.
+
+## TODO
+This is important (to me):
+- [ ] Text boxes have to be processed. This is especially important for slides with code snippets.
+
+These are not:
+- [ ] Slides with "big text" could be processed better (perhaps by using a bigger font, or using the text as the title).
+- [ ] Some redundancy might be eliminated in the resulting markdown file with a smarter parsing.
+- [ ] Tables could be processed (but this might prove too much work for a very occasional use).
+- [ ] ...
 
 
 ## Copyright and License
