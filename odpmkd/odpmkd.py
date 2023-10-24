@@ -188,9 +188,9 @@ class OdpParser:
             else:
                 self.handleVerbatimTextNode(node.childNodes[0])
         else:
+            t = ""
             for n in node.childNodes:
                 if n.nodeName == 'text:span':
-                    t = ""
                     for nn in n.childNodes:
                         _t = self.getTextFromNode(nn)
                         if _t is not None:
@@ -215,6 +215,7 @@ class OdpParser:
 
     def handleTextBox(self, node):
         self.currentSlide.text += "\n```\n"
+        # Each child node will typically be a text:p, so a \n is a good choice to separate them
         for n in node.childNodes:
             self.handleVerbatimTextNode(n)
             if n != node.childNodes[-1]:
