@@ -1,11 +1,11 @@
 # odpmkd
 A small set of tools to process OpenDocument Presentation files (ODP), and to transform them to markdown.
-It will work acceptably for the "lecture notes style" slides, AKA "presentation-as-a-document" style: mostly text structured in bullet points. It will
-not work well at all for more "presentation style" slides, where the visual aspect and the arrangement of elements
-in the slides is important.
+It will work acceptably for the "lecture notes style" slides, AKA "presentation-as-a-document" style: mostly text structured in bullet points. It will not work well at all for more "presentation style" slides, where the visual aspect and the arrangement of elements in the slides is important.
 
 - `odptools` takes an odp file, and produces a cleaner version of that file.
 - `odpmkd` takes an odp file and produces a markdown file trying to preserve its contents.
+
+You can see an example of the results in these [lecture notes, in Spanish, about Scrum](https://unizar-30248-geprosoft.github.io/scrumnotes/) which are used in a software projects management course in the [Universidad Zaragoza](https://www.unizar.es/), [Grado en Ingeniería Informática](https://estudios.unizar.es/estudio/ver?id=148). Those lecture notes have been processed with **odpmkd** and published using [MkDocs](https://www.mkdocs.org).
 
 ## Build
 Read the ci.yml script for details on how to build.
