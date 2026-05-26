@@ -7,6 +7,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
+      # Simplest (not safest) way to allow relase-action to add a release to the repository
       contents: write
 
     steps:
